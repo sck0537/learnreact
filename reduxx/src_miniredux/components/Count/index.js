@@ -1,49 +1,55 @@
 import React, { Component } from 'react'
 import { Button } from '@material-ui/core'
+import store from '../../redux/store'
 export default class Count extends Component {
 
     state = {
         count: 0
     }
+// componentDidMount(){
 
+//     store.subscribe(() => {
+//     this.setState({ })
+// })
+// }
     increment = () => {
 
         const { value } = this.selectNumber
-        const { count } = this.state
-        this.setState({
-            count: count + parseInt(value)
+        store.dispatch({
+            type: 'increment', data: parseInt(value)
         })
+      
+
 
     }
     decrement = () => {
-
-        const { count } = this.state
         const { value } = this.selectNumber
-        this.setState({
-            count: count - parseInt(value)
+
+        store.dispatch({
+            type: 'decrement', data: parseInt(value)
         })
+      
 
     }
     incrementIfOdd = () => {
-
-        const { count } = this.state
         const { value } = this.selectNumber
+        const count = store.getState()
         if (count % 2 !== 0) {
-            this.setState({
-                count: count + parseInt(value)
-            })
+            store.dispatch({
+                       type: 'increment', data: parseInt(value)
+                   })
+         
         }
 
 
     }
     incrementAsync = () => {
 
-        const { count } = this.state
         const { value } = this.selectNumber
         setTimeout(() => {
 
-            this.setState({
-                count: count + parseInt(value)
+            store.dispatch({
+                type: 'increment', data: value*1
             })
 
 
@@ -53,7 +59,7 @@ export default class Count extends Component {
         return (
             <div>
 
-                <h1>count={this.state.count}</h1>
+                <h1>count={store.getState()}</h1>
                 <select ref={c => this.selectNumber = c} >
 
                     <option value="1">1</option>
