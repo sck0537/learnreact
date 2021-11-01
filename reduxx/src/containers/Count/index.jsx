@@ -5,21 +5,30 @@ import CountUI from '../../components/Count';
 
 import { connect } from 'react-redux';
 import { createIncrementAction, createIncrementAsyncAction, createDecrementAction } from '../../redux/count_action'
-function mapStateToProps(state) {
-    return { count: state }
-}
+// function mapStateToProps(state) {
+//     return { count: state }
+// }
 
 
-function mapDispatchToProps(dispatch) {
-    return {
+// function mapDispatchToProps(dispatch) {
+//     return {
 
-        decrement: number => dispatch(createDecrementAction(number)),
-        increment: number => dispatch(createIncrementAction(number)),
-        Asyncincrement: number => dispatch(createIncrementAsyncAction(number,3000))
+//         decrement: number => dispatch(createDecrementAction(number)),
+//         increment: number => dispatch(createIncrementAction(number)),
+//         Asyncincrement: number => dispatch(createIncrementAsyncAction(number,3000))
+//     }
+
+
+// }
+
+export default connect(
+    state => ({ count: state }),
+    {
+        decrement: createDecrementAction,
+        increment: createIncrementAction,
+        Asyncincrement: createIncrementAsyncAction
     }
 
 
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CountUI);
+)(CountUI);
 
