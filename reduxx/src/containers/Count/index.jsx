@@ -1,10 +1,9 @@
-import CountUI from '../../components/Count';
-
+ 
 
 // import  store from '../../redux/store'
 
 import { connect } from 'react-redux';
-import { createIncrementAction, createIncrementAsyncAction, createDecrementAction } from '../../redux/count_action'
+import { createIncrementAction, createIncrementAsyncAction, createDecrementAction } from '../../redux/actions/Count'
 // function mapStateToProps(state) {
 //     return { count: state }
 // }
@@ -21,6 +20,61 @@ import { createIncrementAction, createIncrementAsyncAction, createDecrementActio
 
 // }
 
+
+import React, { Component } from 'react'
+import { Button } from '@material-ui/core'
+class Count extends Component {
+
+
+    increment = () => {
+
+        const { value } = this.selectNumber
+      
+        this.props.increment(value*1)
+
+    }
+    decrement = () => {
+        const { value } = this.selectNumber
+
+        this.props.decrement(value)
+      
+
+    }
+    incrementIfOdd = () => {
+        const { value } = this.selectNumber
+     if(this.props.count % 2 !== 0) {
+         this.props.increment(value*1)
+     }
+
+    }
+    incrementAsync = () => {
+
+        const { value } = this.selectNumber
+        this.props.Asyncincrement(value*1,3000)
+    }
+    render() {
+
+        return (
+            <div>
+
+                <h1>count={this.props.count}</h1>
+                <select ref={c => this.selectNumber = c} >
+
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+
+                <Button onClick={this.increment} variant="contained" color="primary">+</Button>
+                <Button onClick={this.decrement} variant="contained" color="primary">-</Button>
+                <Button onClick={this.incrementIfOdd} variant="contained" color="primary">+</Button>
+                <Button onClick={this.incrementAsync} variant="contained" color="primary">+</Button>
+            </div> 
+        )
+    }
+}
+
+
 export default connect(
     state => ({ count: state }),
     {
@@ -30,5 +84,5 @@ export default connect(
     }
 
 
-)(CountUI);
+)(Count);
 
