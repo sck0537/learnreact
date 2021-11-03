@@ -1,25 +1,6 @@
- 
-
-// import  store from '../../redux/store'
 
 import { connect } from 'react-redux';
-import { createIncrementAction, createIncrementAsyncAction, createDecrementAction } from '../../redux/actions/Count'
-// function mapStateToProps(state) {
-//     return { count: state }
-// }
-
-
-// function mapDispatchToProps(dispatch) {
-//     return {
-
-//         decrement: number => dispatch(createDecrementAction(number)),
-//         increment: number => dispatch(createIncrementAction(number)),
-//         Asyncincrement: number => dispatch(createIncrementAsyncAction(number,3000))
-//     }
-
-
-// }
-
+import { createIncrementAction, createIncrementAsyncAction, createDecrementAction } from '../../redux/actions/count'
 
 import React, { Component } from 'react'
 import { Button } from '@material-ui/core'
@@ -53,11 +34,11 @@ class Count extends Component {
         this.props.Asyncincrement(value*1,3000)
     }
     render() {
-
+        // console.log(this.props)
         return (
             <div>
-
-                <h1>count={this.props.count}</h1>
+                
+                <h1>count={this.props.count}</h1>down{this.props.personl}
                 <select ref={c => this.selectNumber = c} >
 
                     <option value="1">1</option>
@@ -76,7 +57,7 @@ class Count extends Component {
 
 
 export default connect(
-    state => ({ count: state }),
+    state => ({ count: state.count ,personl:state.person.length}),
     {
         decrement: createDecrementAction,
         increment: createIncrementAction,
@@ -85,4 +66,20 @@ export default connect(
 
 
 )(Count);
+
+// function mapStateToProps(state) {
+//     return { count: state }
+// }
+
+
+// function mapDispatchToProps(dispatch) {
+//     return {
+
+//         decrement: number => dispatch(createDecrementAction(number)),
+//         increment: number => dispatch(createIncrementAction(number)),
+//         Asyncincrement: number => dispatch(createIncrementAsyncAction(number,3000))
+//     }
+
+
+// }
 
