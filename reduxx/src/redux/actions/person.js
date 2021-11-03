@@ -4,11 +4,11 @@
 
 
 
-const  createAddPersonAction = (personObj) => ({
+const  AddPerson = (personObj) => ({
 
     type: 'ADD_PERSON',
     payload: personObj
 
 })
-export {createAddPersonAction};
+export {AddPerson};
 

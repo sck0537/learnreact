@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { nanoid } from 'nanoid'
 import { connect } from 'react-redux'
 import {Button} from '@material-ui/core'
-import { createAddPersonAction } from '../../redux/actions/person'
+import { AddPerson } from '../../redux/actions/person'
 class Person extends Component {
 
     addPerson = () => {
@@ -16,6 +16,8 @@ class Person extends Component {
         }
         console.log(person.id)
         this.props.addPerson(person)
+        this.ageNode.value=''
+        this.nameNode.value=''
     }
     render() {
         // console.log('p', this.props.persons)
@@ -50,7 +52,7 @@ export default connect(
         persons: state.person
     }),
     {
-        addPerson: createAddPersonAction
+        addPerson: AddPerson
     }
 )(Person)
 

@@ -1,7 +1,7 @@
 
-const createIncrementAction = (data) => ({ type: 'increment', data })
-const createDecrementAction = (data) => ({ type: 'decrement', data })
-const createIncrementAsyncAction = (data, time) => {
+const increment = (data) => ({ type: 'increment', data })
+const decrement = (data) => ({ type: 'decrement', data })
+const incrementAsync = (data, time) => {
 
 
     return (dispatch) => {
@@ -11,9 +11,9 @@ const createIncrementAsyncAction = (data, time) => {
 
         setTimeout(() => {
 
-            dispatch(createIncrementAction(data))
+            dispatch(increment(data))
         }, time)
     }
 
 }
-export { createIncrementAction, createIncrementAsyncAction, createDecrementAction }
+export { increment, decrement, incrementAsync }
